@@ -1,0 +1,184 @@
+.root {
+    position: relative;
+}
+
+.body {
+    position: relative;
+}
+
+.content {
+    padding: var(--ui-space-s);
+    outline-style: none;
+    text-wrap: wrap;
+    overflow-y: auto;
+}
+
+.placeholder {
+    pointer-events: none;
+    position: absolute;
+    top: var(--ui-space-s);
+    left: var(--ui-space-s);
+    user-select: none;
+    opacity: .8;
+}
+
+.compact {
+    .content {
+        padding: var(--ui-space-xs);
+    }
+
+    .placeholder {
+        top: var(--ui-space-xs);
+        left: var(--ui-space-xs);
+    }
+}
+
+.heading {
+    &1 {
+
+    }
+
+    &2 {
+
+    }
+
+    &3 {
+
+    }
+}
+
+.paragraph {
+    margin: 0;
+
+    & + & {
+        margin-top: .5em;
+    }
+}
+
+.quote {
+    
+}
+
+.orderedList {
+    &1, &2, &3, &4, &5 {
+        margin-left: 0;
+        padding: 0;
+        list-style-position: inside;
+    }
+
+    &1 {
+        margin: .5rem 0;
+    }
+
+    &2 {
+        list-style-type: upper-alpha;
+    }
+
+    &3 {
+        list-style-type: lower-alpha;
+    }
+
+    &4 {
+        list-style-type: upper-roman;
+    }
+
+    &5 {
+        list-style-type: lower-roman;
+    }
+}
+
+.unorderedList {
+    margin: .5rem 0;
+    padding: 0;
+    list-style-position: inside;
+}
+
+.listItem {
+    margin: 0;
+    line-height: 1.5;
+
+    &Checked,
+    &Unchecked {
+        position: relative;
+        margin-right: 8px;
+        padding-left: 24px;
+        padding-right: 24px;
+        list-style-type: none;
+        outline: none;
+
+        &:before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            top: 2px;
+            left: 0;
+            cursor: pointer;
+            display: block;
+            background-size: cover;
+            position: absolute;
+        }
+
+        &:focus:before {
+            box-shadow: 0 0 0 2px #a6cdfe;
+            border-radius: 2px;
+        }
+    }
+
+    &Checked {
+        text-decoration: line-through;
+
+        &:before {
+            border: 1px solid rgb(61, 135, 245);
+            border-radius: 2px;
+            background-color: #3d87f5;
+            background-repeat: no-repeat;
+        }
+
+        &:after {
+            content: '';
+            cursor: pointer;
+            border-color: #fff;
+            border-style: solid;
+            position: absolute;
+            display: block;
+            top: 6px;
+            width: 3px;
+            left: 7px;
+            height: 6px;
+            transform: rotate(45deg);
+            border-width: 0 2px 2px 0;
+        }
+    }
+
+    &Unchecked {
+        &:before {
+            border: 1px solid #999;
+            border-radius: 2px;
+        }
+    }
+
+    &Nested {
+        list-style-type: none;
+
+        &:before,
+        &:after {
+            display: none;
+        }
+    }
+}
+
+.code {
+    position: relative;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.underline {
+    text-decoration: underline;
+}

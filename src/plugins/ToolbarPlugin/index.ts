@@ -1,0 +1,1 @@
+export { default, type ToolbarPluginOptions } from './ToolbarPlugin';

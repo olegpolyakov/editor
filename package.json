@@ -1,0 +1,65 @@
+{
+  "name": "@olegpolyakov/editor",
+  "version": "0.1.0",
+  "description": "Rich content editor built with Lexical and React",
+  "type": "module",
+  "main": "./dist/index.js",
+  "style": "./dist/index.css",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "compile": "tsc --noEmit",
+    "dev": "vite",
+    "build": "vite build && tsc",
+    "build-docs": "vite build --config docs/vite.config.js",
+    "demo": "vite --config demo/vite.config.js",
+    "lint": "eslint ./src",
+    "prepublishOnly": "npm run lint && npm run build"
+  },
+  "files": [
+    "./dist/**/*"
+  ],
+  "dependencies": {
+    "@lexical/clipboard": "^0.48.0",
+    "@lexical/code": "^0.48.0",
+    "@lexical/link": "^0.48.0",
+    "@lexical/list": "^0.48.0",
+    "@lexical/mark": "^0.48.0",
+    "@lexical/overflow": "0.48.0",
+    "@lexical/react": "^0.48.0",
+    "@lexical/rich-text": "^0.48.0",
+    "@lexical/selection": "^0.48.0",
+    "@lexical/utils": "^0.48.0",
+    "@olegpolyakov/ui": "^0.6.0",
+    "classnames": "^2.3.2",
+    "lexical": "^0.48.0",
+    "plyr": "^3.7.8",
+    "plyr-react": "^5.3.0",
+    "react-error-boundary": "^3.1.4",
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
+  },
+  "devDependencies": {
+    "@lexical/eslint-plugin": "^0.48.0",
+    "@olegpolyakov/frontend": "^0.14.0",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^24.9.1",
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.53.1",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "sass": "^1.93.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vite-plugin-svgr": "^4.5.0"
+  }
+}
