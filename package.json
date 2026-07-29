@@ -7,7 +7,11 @@
   "style": "./dist/index.css",
   "types": "./dist/types/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "style": "./dist/index.css",
+      "types": "./dist/types/index.d.ts"
+    }
   },
   "scripts": {
     "compile": "tsc --noEmit",
