@@ -1,5 +1,8 @@
 .root {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ui-space-xs);
 }
 
 .body {
@@ -7,7 +10,7 @@
 }
 
 .content {
-    padding: var(--ui-space-s);
+    padding: var(--ui-space-xs);
     outline-style: none;
     text-wrap: wrap;
     overflow-y: auto;
@@ -16,8 +19,8 @@
 .placeholder {
     pointer-events: none;
     position: absolute;
-    top: var(--ui-space-s);
-    left: var(--ui-space-s);
+    top: var(--ui-space-xs);
+    left: var(--ui-space-xs);
     user-select: none;
     opacity: .8;
 }
