@@ -2,11 +2,11 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: var(--ui-space-xs);
 }
 
 .body {
     position: relative;
+    padding: var(--ui-space-xs);
 }
 
 .content {

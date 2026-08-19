@@ -1,8 +1,12 @@
 .root {
+    position: sticky;
+    top: 0px;
     display: flex;
     align-items: center;
     gap: var(--ui-space-s);
-    overflow-y: auto;
+    padding: var(--ui-space-xs);
+    backdrop-filter: blur(10px);
+    z-index: 1;
 }
 
 .divider {
