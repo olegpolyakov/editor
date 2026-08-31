@@ -43,8 +43,8 @@
     "uuid": "^9.0.0"
   },
   "peerDependencies": {
-    "@olegpolyakov/frontend": "^0.18.2",
-    "@olegpolyakov/ui": "^0.7.0",
+    "@olegpolyakov/frontend": "^0.18.0",
+    "@olegpolyakov/ui": "^0.9.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0"
   },
