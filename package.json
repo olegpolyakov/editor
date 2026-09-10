@@ -1,6 +1,6 @@
 {
   "name": "@olegpolyakov/editor",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Rich content editor built with Lexical and React",
   "type": "module",
   "main": "./dist/index.js",
