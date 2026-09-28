@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { type ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { $isListNode } from '@lexical/list';
 import { $isHeadingNode } from '@lexical/rich-text';
@@ -30,10 +30,12 @@ export type ToolbarPluginOptions = {
 
 export default function ToolbarPlugin({
     compact,
-    options = {}
+    options = {},
+    children
 }: {
     compact?: boolean;
     options?: ToolbarPluginOptions;
+    children?: ReactNode;
 }) {
     const editor = useToolbarEditor();
 
@@ -156,6 +158,8 @@ export default function ToolbarPlugin({
                     onCheckList={() => editor.insertCheckList()}
                 />
             }
+
+            {children}
         </Toolbar>
     );
 }

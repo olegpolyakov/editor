@@ -34,13 +34,16 @@
     "@lexical/overflow": "0.48.0",
     "@lexical/react": "^0.48.0",
     "@lexical/rich-text": "^0.48.0",
+    "@lexical/yjs": "^0.48.0",
     "@lexical/selection": "^0.48.0",
     "@lexical/utils": "^0.48.0",
     "classnames": "^2.3.2",
     "lexical": "^0.48.0",
     "prismjs": "^1.30.0",
     "react-error-boundary": "^3.1.4",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "y-websocket": "^3.1.0",
+    "yjs": "^13.6.27"
   },
   "peerDependencies": {
     "@olegpolyakov/frontend": "^0.21.0",

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { CodeExtension, CodeIndentExtension } from '@lexical/code';
 import { TabIndentationExtension } from '@lexical/extension';
@@ -12,6 +12,9 @@ import { defineExtension, type EditorThemeClasses, type SerializedEditorState, t
 
 import cn from '@olegpolyakov/frontend/helpers/classnames';
 
+import CollaborationPlugin, { type CollaborationPluginOptions, type ConnectedUser } from './plugins/collaboration';
+import CollaborationContext from './plugins/collaboration/CollaborationContext';
+import CollaborationToolbar from './plugins/collaboration/CollaborationToolbar';
 import ToolbarPlugin, { ToolbarPluginOptions } from './plugins/ToolbarPlugin';
 
 import styles from './ToolbarEditor.module.scss';
@@ -53,17 +56,20 @@ const theme: EditorThemeClasses = {
 export type EditorState = SerializedEditorState<SerializedLexicalNode>;
 
 export type { ToolbarPluginOptions };
+export type { ConnectedUser } from './plugins/collaboration';
 
 export default function ToolbarEditor({
     initialState,
     compact,
     toolbar,
+    collaboration,
     onChange
 }: {
     initialState?: EditorState;
     compact?: boolean;
     toolbar?: ToolbarPluginOptions;
-    onChange: (state: EditorState) => void
+    collaboration?: CollaborationPluginOptions;
+    onChange?: (state: EditorState) => void
 }) {
     const [extension] = useState(() => defineExtension({
         dependencies: [
@@ -79,39 +85,54 @@ export default function ToolbarEditor({
         namespace: '@olegpolyakov/editor',
         theme,
         $initialEditorState: editor => {
-            if (!initialState) return;
+            if (collaboration || !initialState) return;
 
             const state = editor.parseEditorState(initialState);
             editor.setEditorState(state, { tag: 'init' });
         }
     }));
 
+    const cursorsContainerRef = useRef<HTMLDivElement>(null);
+    const [users, setUsers] = useState<ConnectedUser[]>([]);
+
     return (
         <LexicalExtensionComposer
             extension={extension}
             contentEditable={null}
         >
-            <div className={cn(styles.root, compact && styles.compact)}>
-                <ToolbarPlugin
-                    compact={compact}
-                    options={toolbar}
-                />
+            <CollaborationContext value={{ users, setUsers }}>
+                <div className={cn(styles.root, compact && styles.compact)}>
+                    <ToolbarPlugin
+                        compact={compact}
+                        options={toolbar}
+                    >
+                        {collaboration && <CollaborationToolbar />}
+                    </ToolbarPlugin>
 
-                <div className={styles.body}>
-                    <ContentEditable
-                        className={styles.content}
-                        placeholder={
-                            <div className={styles.placeholder}>
-                                Enter some text...
-                            </div>
-                        }
-                        aria-label="Rich text editor"
-                        aria-placeholder="Enter some text..."
-                    />
+                    <div ref={cursorsContainerRef} className={styles.body}>
+                        <ContentEditable
+                            className={styles.content}
+                            placeholder={
+                                <div className={styles.placeholder}>
+                                    Enter some text...
+                                </div>
+                            }
+                            aria-label="Rich text editor"
+                            aria-placeholder="Enter some text..."
+                        />
+                    </div>
                 </div>
-            </div>
 
-            <OnChangePlugin onChange={editorState => onChange?.(editorState.toJSON())} />
+                {collaboration ? (
+                    <CollaborationPlugin
+                        {...collaboration}
+                        initialEditorState={initialState ? JSON.stringify(initialState) : undefined}
+                        cursorsContainerRef={cursorsContainerRef}
+                    />
+                ) : (
+                    <OnChangePlugin onChange={editorState => onChange?.(editorState.toJSON())} />
+                )}
+            </CollaborationContext>
         </LexicalExtensionComposer>
     );
 }
