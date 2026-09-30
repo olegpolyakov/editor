@@ -7,7 +7,6 @@ import type * as Y from 'yjs';
 import CollaborationContext from './CollaborationContext';
 import { collaborationColors } from './data';
 import { createWebsocketProvider } from './providers';
-export type { ConnectedUser } from './types';
 
 export type CollaborationPluginOptions = {
     documentId: string;
@@ -29,7 +28,8 @@ export default function CollaborationPlugin({
     initialEditorState,
     cursorsContainerRef
 }: CollaborationPluginProps) {
-    const { setUsers } = useContext(CollaborationContext);
+    const { setCollaborators } = useContext(CollaborationContext);
+
     const [cursorColor] = useState(() => {
         const index = Math.floor(Math.random() * collaborationColors.length);
         return collaborationColors[index];
@@ -37,9 +37,9 @@ export default function CollaborationPlugin({
 
     const providerFactory = useCallback(
         (id: string, yjsDocMap: Map<string, Y.Doc>) => {
-            return createWebsocketProvider(id, yjsDocMap, websocketUrl, accessToken, setUsers);
+            return createWebsocketProvider(id, yjsDocMap, websocketUrl, accessToken, setCollaborators);
         },
-        [accessToken, setUsers, websocketUrl]
+        [accessToken, websocketUrl, setCollaborators]
     );
 
     return (

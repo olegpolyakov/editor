@@ -1,0 +1,30 @@
+.root {
+    position: relative;
+    display: inline-flex;
+    max-width: 100%;
+}
+
+.image {
+    max-width: 100%;
+    border-radius: var(--ui-radius-m);
+}
+
+.overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(0 0 0 / 30%);
+    border-radius: var(--ui-radius-m);
+}
+
+.error {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: var(--ui-space-xs) var(--ui-space-s);
+    color: var(--ui-color-danger-text);
+    background-color: var(--ui-color-danger-bg);
+    font-size: var(--ui-font-size-s);
+}

@@ -12,10 +12,14 @@ import { defineExtension, type EditorThemeClasses, type SerializedEditorState, t
 
 import cn from '@olegpolyakov/frontend/helpers/classnames';
 
-import CollaborationPlugin, { type CollaborationPluginOptions, type ConnectedUser } from './plugins/collaboration';
-import CollaborationContext from './plugins/collaboration/CollaborationContext';
-import CollaborationToolbar from './plugins/collaboration/CollaborationToolbar';
-import ToolbarPlugin, { ToolbarPluginOptions } from './plugins/ToolbarPlugin';
+import CollaborationPlugin, {
+    CollaborationContext,
+    type CollaborationPluginOptions,
+    CollaborationToolbar,
+    type ConnectedUser
+} from './plugins/collaboration';
+import ToolbarPlugin, { ToolbarPluginOptions } from './plugins/toolbar';
+import UploadPlugin, { FileNode, ImageNode, type Storage, UploadToolbar } from './plugins/upload';
 
 import styles from './ToolbarEditor.module.scss';
 
@@ -57,18 +61,21 @@ export type EditorState = SerializedEditorState<SerializedLexicalNode>;
 
 export type { ToolbarPluginOptions };
 export type { ConnectedUser } from './plugins/collaboration';
+export type { Storage, UploadedAsset } from './plugins/upload';
 
 export default function ToolbarEditor({
     initialState,
     compact,
     toolbar,
     collaboration,
+    storage,
     onChange
 }: {
     initialState?: EditorState;
     compact?: boolean;
     toolbar?: ToolbarPluginOptions;
     collaboration?: CollaborationPluginOptions;
+    storage?: Storage;
     onChange?: (state: EditorState) => void
 }) {
     const [extension] = useState(() => defineExtension({
@@ -83,6 +90,7 @@ export default function ToolbarEditor({
         ],
         name: '@olegpolyakov/editor/toolbar',
         namespace: '@olegpolyakov/editor',
+        nodes: [ImageNode, FileNode],
         theme,
         $initialEditorState: editor => {
             if (collaboration || !initialState) return;
@@ -100,38 +108,41 @@ export default function ToolbarEditor({
             extension={extension}
             contentEditable={null}
         >
-            <CollaborationContext value={{ users, setUsers }}>
-                <div className={cn(styles.root, compact && styles.compact)}>
-                    <ToolbarPlugin
-                        compact={compact}
-                        options={toolbar}
-                    >
-                        {collaboration && <CollaborationToolbar />}
-                    </ToolbarPlugin>
+            <CollaborationContext value={{ collaborators: users, setCollaborators: setUsers }}>
+                <UploadPlugin storage={storage}>
+                    <div className={cn(styles.root, compact && styles.compact)}>
+                        <ToolbarPlugin
+                            compact={compact}
+                            options={toolbar}
+                        >
+                            {collaboration && <CollaborationToolbar />}
+                            {storage && <UploadToolbar />}
+                        </ToolbarPlugin>
 
-                    <div ref={cursorsContainerRef} className={styles.body}>
-                        <ContentEditable
-                            className={styles.content}
-                            placeholder={
-                                <div className={styles.placeholder}>
-                                    Enter some text...
-                                </div>
-                            }
-                            aria-label="Rich text editor"
-                            aria-placeholder="Enter some text..."
-                        />
+                        <div ref={cursorsContainerRef} className={styles.body}>
+                            <ContentEditable
+                                className={styles.content}
+                                placeholder={
+                                    <div className={styles.placeholder}>
+                                        Enter some text...
+                                    </div>
+                                }
+                                aria-label="Rich text editor"
+                                aria-placeholder="Enter some text..."
+                            />
+                        </div>
                     </div>
-                </div>
 
-                {collaboration ? (
-                    <CollaborationPlugin
-                        {...collaboration}
-                        initialEditorState={initialState ? JSON.stringify(initialState) : undefined}
-                        cursorsContainerRef={cursorsContainerRef}
-                    />
-                ) : (
-                    <OnChangePlugin onChange={editorState => onChange?.(editorState.toJSON())} />
-                )}
+                    {collaboration ? (
+                        <CollaborationPlugin
+                            {...collaboration}
+                            initialEditorState={initialState ? JSON.stringify(initialState) : undefined}
+                            cursorsContainerRef={cursorsContainerRef}
+                        />
+                    ) : (
+                        <OnChangePlugin onChange={editorState => onChange?.(editorState.toJSON())} />
+                    )}
+                </UploadPlugin>
             </CollaborationContext>
         </LexicalExtensionComposer>
     );

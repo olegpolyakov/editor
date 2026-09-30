@@ -1,0 +1,10 @@
+.root {
+    display: inline-flex;
+    flex-direction: column;
+    gap: var(--ui-space-xs);
+}
+
+.error {
+    color: var(--ui-color-danger-text);
+    font-size: var(--ui-font-size-s);
+}

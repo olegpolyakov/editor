@@ -1,13 +1,13 @@
 import { createContext } from 'react';
 
-import type { ConnectedUser } from './types';
+import type { Collaborator } from './types';
 
 export type CollaborationContextValue = {
-    users: ConnectedUser[];
-    setUsers: (users: ConnectedUser[]) => void;
+    collaborators: Collaborator[];
+    setCollaborators: (collaborators: Collaborator[]) => void;
 };
 
 export default createContext<CollaborationContextValue>({
-    users: [],
-    setUsers: () => undefined
+    collaborators: [],
+    setCollaborators: () => undefined
 });

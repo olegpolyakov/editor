@@ -1,4 +1,4 @@
-export type ConnectedUser = {
+export type Collaborator = {
     clientId: number;
     name: string;
     color: string;

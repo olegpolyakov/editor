@@ -7,7 +7,7 @@ import CollaborationContext from './CollaborationContext';
 import styles from './CollaborationToolbar.module.scss';
 
 export default function CollaborationToolbar() {
-    const { users } = useContext(CollaborationContext);
+    const { collaborators: users } = useContext(CollaborationContext);
 
     if (users.length < 2) return null;
 
