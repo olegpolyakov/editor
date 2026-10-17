@@ -1,13 +1,13 @@
 {
-  "extends": "@olegpolyakov/frontend/tsconfig",
-  "include": [
-    "./src/**/*"
-  ],
-  "compilerOptions": {
-    "rootDir": "./src",
-    "noEmit": false,
-    "emitDeclarationOnly": true,
-    "declaration": true,
-    "declarationDir": "./dist/types",
-  }
+    "extends": "@olegpolyakov/frontend/tsconfig",
+    "include": [
+        "./src/**/*"
+    ],
+    "compilerOptions": {
+        "rootDir": "./src",
+        "noEmit": false,
+        "emitDeclarationOnly": true,
+        "declaration": true,
+        "declarationDir": "./dist/types",
+    }
 }
