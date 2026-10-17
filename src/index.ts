@@ -1,7 +1,7 @@
 export {
     default as ToolbarEditor,
     type EditorState,
-    type ConnectedUser,
+    type Collaborator,
     type Storage,
     type UploadedAsset
 } from './ToolbarEditor';

@@ -16,7 +16,7 @@ import CollaborationPlugin, {
     CollaborationContext,
     type CollaborationPluginOptions,
     CollaborationToolbar,
-    type ConnectedUser
+    type Collaborator
 } from './plugins/collaboration';
 import ToolbarPlugin, { ToolbarPluginOptions } from './plugins/toolbar';
 import UploadPlugin, { FileNode, ImageNode, type Storage, UploadToolbar } from './plugins/upload';
@@ -60,7 +60,7 @@ const theme: EditorThemeClasses = {
 export type EditorState = SerializedEditorState<SerializedLexicalNode>;
 
 export type { ToolbarPluginOptions };
-export type { ConnectedUser } from './plugins/collaboration';
+export type { Collaborator } from './plugins/collaboration';
 export type { Storage, UploadedAsset } from './plugins/upload';
 
 export default function ToolbarEditor({
@@ -101,7 +101,7 @@ export default function ToolbarEditor({
     }));
 
     const cursorsContainerRef = useRef<HTMLDivElement>(null);
-    const [users, setUsers] = useState<ConnectedUser[]>([]);
+    const [users, setUsers] = useState<Collaborator[]>([]);
 
     return (
         <LexicalExtensionComposer
