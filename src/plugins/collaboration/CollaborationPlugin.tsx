@@ -1,8 +1,8 @@
 import { type RefObject, useCallback, useContext, useState } from 'react';
 
+import type * as Y from 'yjs';
 import { LexicalCollaboration } from '@lexical/react/LexicalCollaborationContext';
 import { CollaborationPlugin as LexicalCollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin';
-import type * as Y from 'yjs';
 
 import CollaborationContext from './CollaborationContext';
 import { collaborationColors } from './data';

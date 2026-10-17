@@ -1,14 +1,4 @@
 import {
-    INSERT_CHECK_LIST_COMMAND,
-    INSERT_ORDERED_LIST_COMMAND,
-    INSERT_UNORDERED_LIST_COMMAND
-} from '@lexical/list';
-import {
-    $createHeadingNode,
-    $createQuoteNode
-} from '@lexical/rich-text';
-import { $setBlocksType } from '@lexical/selection';
-import {
     $createParagraphNode,
     $getSelection,
     type CommandListener,
@@ -21,6 +11,16 @@ import {
     REDO_COMMAND,
     UNDO_COMMAND
 } from 'lexical';
+import {
+    INSERT_CHECK_LIST_COMMAND,
+    INSERT_ORDERED_LIST_COMMAND,
+    INSERT_UNORDERED_LIST_COMMAND
+} from '@lexical/list';
+import {
+    $createHeadingNode,
+    $createQuoteNode
+} from '@lexical/rich-text';
+import { $setBlocksType } from '@lexical/selection';
 
 export class ToolbarEditor {
     private editor: LexicalEditor;

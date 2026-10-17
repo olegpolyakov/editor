@@ -12,9 +12,13 @@ export default function CollaborationToolbar() {
     if (users.length < 2) return null;
 
     return (
-        <div className={styles.root} aria-label="Connected users">
+        <div
+            className={styles.root}
+            aria-label="Connected users"
+        >
             {users.map(user => (
-                <Avatar key={user.clientId}
+                <Avatar
+                    key={user.clientId}
                     content={user.name.split(' ').map(n => n[0]).join('')} // initials of the user's name
                     size="s"
                     style={{ backgroundColor: user.color }}

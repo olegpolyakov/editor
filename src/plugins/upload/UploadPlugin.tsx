@@ -1,8 +1,5 @@
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
-import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
-import { DRAG_DROP_PASTE } from '@lexical/rich-text';
-import { mergeRegister } from '@lexical/utils';
 import {
     $getNodeByKey,
     $insertNodes,
@@ -10,6 +7,9 @@ import {
     COMMAND_PRIORITY_LOW,
     type NodeKey
 } from 'lexical';
+import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
+import { DRAG_DROP_PASTE } from '@lexical/rich-text';
+import { mergeRegister } from '@lexical/utils';
 
 import { INSERT_FILE_COMMAND, INSERT_IMAGE_COMMAND } from './commands';
 import { $createFileNode, FileNode } from './nodes/FileNode';

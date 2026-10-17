@@ -111,7 +111,10 @@ function ImageComponent({
             }
 
             {status?.state === 'error' &&
-                <span className={styles.error} role="alert">
+                <span
+                    className={styles.error}
+                    role="alert"
+                >
                     {status.error || 'Upload failed'}
                 </span>
             }

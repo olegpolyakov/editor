@@ -71,7 +71,10 @@ export class FileNode extends DecoratorNode<JSX.Element> {
     }
 
     decorate(): JSX.Element {
-        return <FileComponent nodeKey={this.getKey()} asset={this.__asset} />;
+        return <FileComponent
+            nodeKey={this.getKey()}
+            asset={this.__asset}
+        />;
     }
 }
 
@@ -93,7 +96,10 @@ function FileComponent({ nodeKey, asset }: { nodeKey: NodeKey; asset: UploadedAs
             />
 
             {status?.state === 'error' &&
-                <span className={styles.error} role="alert">
+                <span
+                    className={styles.error}
+                    role="alert"
+                >
                     {status.error || 'Upload failed'}
                 </span>
             }

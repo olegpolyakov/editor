@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 
+import { defineExtension, type EditorThemeClasses, type SerializedEditorState, type SerializedLexicalNode } from 'lexical';
 import { CodeExtension, CodeIndentExtension } from '@lexical/code';
 import { TabIndentationExtension } from '@lexical/extension';
 import { HistoryExtension } from '@lexical/history';
@@ -8,7 +9,6 @@ import { ContentEditable } from '@lexical/react/LexicalContentEditable';
 import { LexicalExtensionComposer } from '@lexical/react/LexicalExtensionComposer';
 import { OnChangePlugin } from '@lexical/react/LexicalOnChangePlugin';
 import { RichTextExtension } from '@lexical/rich-text';
-import { defineExtension, type EditorThemeClasses, type SerializedEditorState, type SerializedLexicalNode } from 'lexical';
 
 import cn from '@olegpolyakov/frontend/helpers/classnames';
 
@@ -119,7 +119,10 @@ export default function ToolbarEditor({
                             {storage && <UploadToolbar />}
                         </ToolbarPlugin>
 
-                        <div ref={cursorsContainerRef} className={styles.body}>
+                        <div
+                            ref={cursorsContainerRef}
+                            className={styles.body}
+                        >
                             <ContentEditable
                                 className={styles.content}
                                 placeholder={

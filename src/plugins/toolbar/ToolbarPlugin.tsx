@@ -1,8 +1,5 @@
 import { type ReactNode, useCallback, useEffect, useState } from 'react';
 
-import { $isListNode } from '@lexical/list';
-import { $isHeadingNode } from '@lexical/rich-text';
-import { $findMatchingParent, mergeRegister } from '@lexical/utils';
 import {
     $getSelection,
     $isRangeSelection,
@@ -11,6 +8,9 @@ import {
     CAN_UNDO_COMMAND,
     COMMAND_PRIORITY_LOW
 } from 'lexical';
+import { $isListNode } from '@lexical/list';
+import { $isHeadingNode } from '@lexical/rich-text';
+import { $findMatchingParent, mergeRegister } from '@lexical/utils';
 
 import BlockType from './components/BlockType';
 import History from './components/History';

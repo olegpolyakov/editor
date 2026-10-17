@@ -1,6 +1,6 @@
-import type { Provider } from '@lexical/yjs';
 import { WebsocketProvider } from 'y-websocket';
 import * as Y from 'yjs';
+import type { Provider } from '@lexical/yjs';
 
 import type { Collaborator } from './types';
 
